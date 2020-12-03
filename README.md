@@ -1,19 +1,9 @@
 # proyecto-vue
-
-## Project setup
+Proyecto frontend; Diplomado en ecosistemas y arquitecturas para el desarrollo de software, del Instituto tecnologico del putumayo, tecnologia en desarrollo de software 6.
+## Integrantes
 ```
-npm install
+* Andres camilo morales chaves
+* Jennifer catalina diaz calderon
+* Yilbert camilo guevara
+* William andres leguizamon
 ```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
