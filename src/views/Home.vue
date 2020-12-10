@@ -1,13 +1,17 @@
 <template>
-  <div class="home">
-    <h1>Home page</h1>
-    <img alt="Vue logo" src="../assets/logo.png">
-  </div>
+
 </template>
 
 <script>
-
-export default {
-  name: 'Home',
-}
+  export default {
+    name: 'Home',
+  }
 </script>
+
+
+<style>
+.navbar{
+  background: rgb(212, 177, 221);
+  
+}
+</style>
