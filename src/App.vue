@@ -32,10 +32,10 @@
 
   <!-- Modal Registro-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">REGISTRARME</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Registrarme</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button> 
@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
               <label for="file">Imagen representante</label>
-              <input @change="cambiarImagen()" style="border: 0" type="file" class="form-control" id="file">
+              <input @change="cambiarImagen()" style="border: 0," type="file" class="form-control p-0" id="file" >
             </div>
             <div class="form-group">
               <label for="email">Correo electronico</label>
@@ -75,11 +75,11 @@
 
   <!-- Modal inicio sesion-->
   <div class="modal fade" id="staticBackdropo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-sm">
       <div class="modal-content">
 
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">INGRESAR</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Ingresar</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button> 
