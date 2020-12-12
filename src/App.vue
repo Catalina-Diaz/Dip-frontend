@@ -126,10 +126,20 @@
       }
     },
     mounted() {
-      
+    this.traerUsuarios();  
     },
     methods: {
-      
+      traerUsuarios() {
+        axios.get("http://localhost:1337/users", {
+          params: {
+            confirmed: true,
+          }}).then((response) => {
+            this.usuarios = response.data;
+            this.usuarios.forEach((user) => {
+              console.log(user.username)
+            })
+        });
+      },
       registro() {
         axios.post("http://localhost:1337/auth/local/register", {
           username: this.username,
