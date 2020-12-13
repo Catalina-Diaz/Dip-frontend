@@ -3,8 +3,8 @@
   <div class="w-100">
     <!-- Barra de navegacion -->
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #6B4BF9;">
-      <a class="navbar-brand" href="#">
-        <img src="@/assets/iconos/Gallery.png" width="30" height="30" class="d-inline-block align-top" alt="icono" loading="lazy" draggable="false">
+      <a class="navbar-brand" @click="reset()" href="#">
+        <img src="@/assets/iconos/Gallery.png" width="35" height="35" class="d-inline-block align-top" alt="icono" loading="lazy" draggable="false">
         <span class="ml-1 h4">Catalogos en linea</span>
       </a>
 
@@ -14,19 +14,44 @@
 
       <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <form class="form-inline my-2 my-lg-0">
-            <button type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#staticBackdrop">
-              Registrarme
-            </button>
-            <button type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticBackdropo">
-              Ingresar
-            </button>
-          </form>
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <button type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#staticBackdrop">
+            Registrarme
+          </button>
+          <button type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticBackdropo">
+            Ingresar
+          </button>
+        </form>
         
       </div>
     </nav>
     <!-- End, Barra de navegacion -->
+
+    <!-- contenedor Usuarios -->
+    <div v-if="userData">
+      <h3 class="ml-4 mt-3">Establecimientos:</h3>
+      <!-- Usuarios -->
+      <div class="row m-2">
+        <div @click="next(user.id)" class="col-sm-6 col-md-3" v-for="(user, id) in usuarios" :key="id">
+          <div class="card mb-3" style="">
+            <img :src="'http://localhost:1337'+user.imagen_usuario.imagen.url" class="card-img-top" alt="">
+            <div class="card-body px-2 pt-2 pb-1">
+              <h5 class="card-title">{{user.username}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End, Usuarios -->
+    </div>
+    <!-- End, contenedor Usuarios -->
+
+    <!-- sin usuarios -->
+    <div v-if="userVacios">
+      <h3 class="ml-4 mt-3">Sin establecimientos registrados...</h3>
+    </div>
+    <!-- End, sin usuarios -->
+
   </div>
   <!-- End, Contenedor principal -->
 
@@ -116,8 +141,9 @@
     data() {
       return {
         usuarios: [],
+        userVacios: false,
+        userData: false,
         username: '',
-        userImagen: null,
         email: '',
         telefono: '',
         password: '',
@@ -126,7 +152,7 @@
       }
     },
     mounted() {
-    this.traerUsuarios();  
+      this.traerUsuarios(); 
     },
     methods: {
       traerUsuarios() {
@@ -135,9 +161,19 @@
             confirmed: true,
           }}).then((response) => {
             this.usuarios = response.data;
-            this.usuarios.forEach((user) => {
-              console.log(user.username)
-            })
+            if(this.usuarios) {
+              this.userVacios = false;
+              this.userData = true;
+            } else {
+              this.userVacios = true;
+              this.userData = false;
+            }
+            // this.usuarios.forEach((user) => {
+            //   console.log(user.username)
+            // })
+        }).catch((error) => {
+          this.userVacios = true;
+          this.userData = false;
         });
       },
       registro() {
@@ -154,6 +190,7 @@
           formData.append('data', JSON.stringify({
             user: parseInt(response.data.user.id),
           }));
+          //Imagen del usuario
           axios.post("http://localhost:1337/imagen-usuarios", formData).then((response) => {
             console.log('Ok');
           });
@@ -169,6 +206,16 @@
       },
       cambiarImagen() {
         this.userImagen = event.target.files[0];
+      },
+      next(userId) {
+        localStorage.setItem('userId', userId);
+        console.log(userId);
+      },
+      reset() {
+        if(localStorage.getItem('userId')){
+          console.log(localStorage.getItem('userId'));
+          localStorage.removeItem('userId');
+        }
       }
     }
 
