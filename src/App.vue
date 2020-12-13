@@ -22,6 +22,7 @@
           <button v-if="iflogin" type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticBackdropo">
             Ingresar
           </button>
+          
           <button v-if="ifsalir" @click="salir()"  type="button" class="btn btn-light">
             Salir
           </button>
@@ -31,7 +32,6 @@
           <button v-if="false" type="button" class="btn btn-light" data-toggle="modal" data-target="#statiCategoria">
             Agregar categoria
           </button>
-
         </form>
         
       </div>
@@ -247,6 +247,7 @@
         l_password: '',
         ifregistro: true,
         iflogin: true,
+        ifmiCatg: false,
         ifsalir: false,
       }
     },
@@ -256,9 +257,8 @@
       }
       if(localStorage.getItem('iflogin')){
         this.iflogin = false;
-      }
-      if(localStorage.getItem('iflogin')){
         this.ifsalir = true;
+        this.ifmiCatg = true;
       }
     },
     methods: {
@@ -289,7 +289,6 @@
           console.log('login');
           localStorage.setItem('iflogin', false);
           localStorage.setItem('ifregistro', false);
-          localStorage.setItem('ifsalir', true);
           localStorage.setItem('token', response.data.jwt);
           location.reload();
         });
