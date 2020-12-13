@@ -22,6 +22,13 @@
           <button type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticBackdropo">
             Ingresar
           </button>
+          <button type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticProducto">
+            Agregar producto
+          </button>
+          <button type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#statiCategoria">
+            Agregar categoria
+          </button>
+
         </form>
         
       </div>
@@ -130,6 +137,117 @@
     </div>
   </div>
   <!-- End, Modal inicio sesion-->
+  <!--Modal producto-->
+    <div class="modal fade" id="staticProducto" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Agregar producto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> 
+          </div>
+          <div class="modal-body">
+            <form>
+              <!--imagen pro-->
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="selimagenpro" lang="es">
+                <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+              </div>
+              <!--descripcion pro-->
+              <div class="form-group">
+                <label for="descripcion1"></label>
+                <textarea class="form-control" placeholder="Descripcion" id="descripcion1" rows="4"></textarea>
+              </div>
+              <!--categoria pro-->
+              <div class="row form-group">
+                <div class="col-auto">
+                  <label for="inputState">Categoria</label> 
+                </div>
+                <div class="col-auto px-3">
+                  <select id="inputState" class="form-control">
+                    <option selected>Select</option>
+                    <option>...</option>
+                  </select>
+                </div>
+              </div>
+              <!--radio-->
+              <fieldset class="form-group">
+                <div class="row align-items-center">
+                  <legend class="col-form-label col-sm-2 pt-0"></legend>
+
+                  <div class="col-auto mb-2 px-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                      <label class="form-check-label" for="gridRadios1">
+                        Activo
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-auto px-3">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                      <label class="form-check-label" for="gridRadios2">
+                        Inactivo
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <!--precio-->
+              <input class="form-control form-control-sm" id="preciopr" type="number" placeholder="Precio">
+            
+            </form>
+          </div>
+
+          <div class="modal-footer d-flex justify-content-center align-items-center">
+            <button type="button" class="btn btn-success">Agregar</button>
+            <button type="button" class="btn btn-danger">Calcelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--Fin-->
+  <!--Modal producto-->
+    <div class="modal fade" id="statiCategoria" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Agregar categoria</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button> 
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="nomcat">Nombre</label>
+                <input type="text" class="form-control" id="nomcat" placeholder="Categoria">
+              </div>
+              <!--imagen categ-->
+              <label for="imacat">Imagen Categoria</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="selimagencat" lang="es">
+                <label class="custom-file-label" for="customFileLang">Seleccionar Imagen</label>
+              </div>
+               <!--descripcion cat-->
+              <div class="form-group">
+                <label for="descripcion2"></label>
+                <textarea class="form-control" placeholder="Describe la categoria" id="descripcion2" rows=2></textarea>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer d-flex justify-content-center align-items-center">
+            <button type="button" class="btn btn-success">Agregar</button>
+            <button type="button" class="btn btn-danger">Calcelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Fin-->
 
   <router-view/>
 </template>
