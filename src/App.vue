@@ -318,7 +318,7 @@
           telefono: this.telefono,
           password: this.password,
         }).then((response) =>{
-          
+          localStorage.setItem('ifregistro', false);
           let formData = new FormData();
           formData.append('files.imagen', this.userImagen);
           formData.append('data', JSON.stringify({
@@ -336,7 +336,10 @@
               password: this.l_password,
         }).then((response) =>{
           console.log('login');
-         
+         localStorage.setItem('iflogin', false);
+          localStorage.setItem('ifsalir', true);
+          localStorage.setItem('token', response.data.jwt);
+          location.reload();
         });
       },
       cambiarImagen() {
@@ -347,10 +350,18 @@
         console.log(userId);
       },
       salir() {
-        
+      localStorage.removeItem('token');
+        localStorage.removeItem('iflogin');
+        localStorage.removeItem('ifsalir');
+        localStorage.removeItem('ifregistro');
+        localStorage.removeItem('userId');
+        this.$router.push('/');
+        location.reload();  
       },
       reset() {
-        
+        if(localStorage.getItem('userId')){
+          localStorage.removeItem('userId');
+        }
       }
     }
 
