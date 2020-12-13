@@ -2,16 +2,11 @@
   <div>
     <!-- contenedor Usuarios -->
     <div v-if="userData">
-      <h3 class="ml-4 my-3">Establecimientos:</h3>
+      <h3 class="ml-4 my-3">Establecimientos: </h3>
       <!-- Usuarios -->
       <div class="row m-2">
-        <div @click="next(user.id)" class="col-sm-6 col-md-3" v-for="(user, id) in usuarios" :key="id">
-          <div class="card mb-3" style="">
-            <img :src="'http://localhost:1337'+user.imagen_usuario.imagen.url" class="card-img-top" alt="">
-            <div class="card-body px-2 pt-2 pb-1">
-              <h5 class="card-title">{{user.username}}</h5>
-            </div>
-          </div>
+        <div @click="next(user.username, user.id)" class="col-sm-6 col-md-3" v-for="(user, id) in usuarios" :key="id">
+          <UsuariosHome :user="user"/>
         </div>
       </div>
       <!-- End, Usuarios -->
@@ -28,8 +23,13 @@
 
 <script>
   import axios from "axios";
+  import UsuariosHome from "@/components/UsuariosHome.vue";
+
   export default {
     name: 'Home',
+    components: {
+      UsuariosHome,
+    },
     data() {
       return {
         usuarios: [],
@@ -68,9 +68,10 @@
           this.userData = false;
         });
       },
-      next(userId) {
-        localStorage.setItem('userId', userId);
-        console.log(userId);
+      next(username, id) {
+        localStorage.setItem('usernameCa', username);
+        this.$router.push('/Catalogo/'+username);
+        localStorage.setItem('userId', id);
       },
     }
   }

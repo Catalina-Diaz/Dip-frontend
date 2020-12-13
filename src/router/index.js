@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import MiCatalogo from '../views/MiCatalogo.vue'
+import Catalogo from '../views/Catalogo.vue'
 
 
 const routes = [
@@ -11,9 +12,15 @@ const routes = [
 
   },
   {
-    path: '/MiCatalogo',
+    path: '/MiCatalogo/:username',
     name: 'MiCatalogo',
     component: MiCatalogo
+
+  },
+  {
+    path: '/Catalogo/:username2',
+    name: 'Catalogo',
+    component: Catalogo
 
   },
 ]
