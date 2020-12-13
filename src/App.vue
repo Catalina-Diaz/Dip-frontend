@@ -22,7 +22,9 @@
           <button v-if="iflogin" type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticBackdropo">
             Ingresar
           </button>
-          
+          <button v-if="ifmiCatg" @click="miCatg()"  type="button" class="btn btn-success mr-3">
+            Mi catalogo
+          </button>
           <button v-if="ifsalir" @click="salir()"  type="button" class="btn btn-light">
             Salir
           </button>
