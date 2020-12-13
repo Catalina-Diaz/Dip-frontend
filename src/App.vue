@@ -16,16 +16,19 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <button type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#staticBackdrop">
+          <button v-if="ifregistro" type="button" class="btn btn-success mr-3" data-toggle="modal" data-target="#staticBackdrop">
             Registrarme
           </button>
-          <button type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticBackdropo">
+          <button v-if="iflogin" type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticBackdropo">
             Ingresar
           </button>
-          <button type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticProducto">
+          <button v-if="ifsalir" @click="salir()"  type="button" class="btn btn-light">
+            Salir
+          </button>
+          <button v-if="false" type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#staticProducto">
             Agregar producto
           </button>
-          <button type="button" class="btn btn-light mr-3 " data-toggle="modal" data-target="#statiCategoria">
+          <button v-if="false" type="button" class="btn btn-light" data-toggle="modal" data-target="#statiCategoria">
             Agregar categoria
           </button>
 
@@ -137,6 +140,7 @@
     </div>
   </div>
   <!-- End, Modal inicio sesion-->
+
   <!--Modal producto-->
     <div class="modal fade" id="staticProducto" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm">
@@ -209,6 +213,7 @@
       </div>
     </div>
   <!--Fin-->
+
   <!--Modal producto-->
     <div class="modal fade" id="statiCategoria" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-sm">
@@ -267,9 +272,21 @@
         password: '',
         l_email: '',
         l_password: '',
+        ifregistro: true,
+        iflogin: true,
+        ifsalir: false,
       }
     },
     mounted() {
+      if(localStorage.getItem('ifregistro')){
+        this.ifregistro = false;
+      }
+      if(localStorage.getItem('iflogin')){
+        this.iflogin = false;
+      }
+      if(localStorage.getItem('iflogin')){
+        this.ifsalir = true;
+      }
       this.traerUsuarios(); 
     },
     methods: {
@@ -301,8 +318,7 @@
           telefono: this.telefono,
           password: this.password,
         }).then((response) =>{
-          console.log(response.data);
-          console.log(response.data.user.id);
+          
           let formData = new FormData();
           formData.append('files.imagen', this.userImagen);
           formData.append('data', JSON.stringify({
@@ -319,8 +335,9 @@
               identifier: this.l_email,
               password: this.l_password,
         }).then((response) =>{
-          console.log('Ok');
-        })
+          console.log('login');
+         
+        });
       },
       cambiarImagen() {
         this.userImagen = event.target.files[0];
@@ -329,11 +346,11 @@
         localStorage.setItem('userId', userId);
         console.log(userId);
       },
+      salir() {
+        
+      },
       reset() {
-        if(localStorage.getItem('userId')){
-          console.log(localStorage.getItem('userId'));
-          localStorage.removeItem('userId');
-        }
+        
       }
     }
 
